@@ -5,11 +5,13 @@
   "author": "Walker Langley <walkerlangley@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
+    "style-loader": "^0.15.0",
     "vue": "^2.1.0",
+    "vue-material": "^0.7.1",
     "vue-resource": "^1.2.0",
     "vue-router": "^2.3.0"
   },

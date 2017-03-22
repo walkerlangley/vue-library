@@ -60,7 +60,7 @@
             }
           })
           .then(user => {
-            this.logUserIn(user);
+            console.log('WTF');
           });
       }
     }

@@ -9,12 +9,12 @@
       <div class='header'>
         <h1>{{ header }}</h1>
         <div class="main-add-book">
-          <button
-            class="btn btn-default btn-lg"
-            @click="addBook">Add New Book</button>
-          <button
-            class="btn btn-danger btn-lg"
-            @click="logout">Log Out</button>
+          <md-button
+            class="md-raised md-primary"
+            @click.native="addBook">Add New Book</md-button>
+          <md-button
+            class="md-raised md-accent"
+            @click.native="logout">Log Out</md-button>
         </div>
       </div>
       <div class="main-container" v-if="loggedIn">
@@ -58,7 +58,11 @@
         resources: {},
         showBookForm: false,
         loggedIn: false,
-        userId: null,
+        user: {
+          userId: null,
+          firstName: '',
+          lastName: ''
+        }
       }
     },
     components: {
@@ -76,7 +80,7 @@
       },
       fetchBooks() {
         console.log("Fetching Books");
-        this.$http.get(`books/${this.userId}`)
+        this.$http.get(`books/${this.user.userId}`)
           .then(response => {
             return response.json();
           })
@@ -92,9 +96,13 @@
       logUserIn(user) {
         console.log('User: ', user);
         this.loggedIn = true;
-        this.userId = user.id;
+        this.user.userId = user.id;
+        this.user.firstName = user.firstName;
+        this.user.lastName = user.lastName;
         localStorage.setItem("library-loggedIn", true);
-        localStorage.setItem("library-userId", this.userId);
+        localStorage.setItem("library-userId", this.user.userId);
+        localStorage.setItem("library-userFirstName", this.user.firstName);
+        localStorage.setItem("library-userLastName", this.user.lastName);
       },
       logout() {
         this.loggedIn = false;
@@ -110,7 +118,9 @@
     },
     created() {
       this.loggedIn = localStorage.getItem("library-loggedIn");
-      this.userId = localStorage.getItem("library-userId");
+      this.user.userId = localStorage.getItem("library-userId");
+      this.user.firstName = localStorage.getItem("library-userFirstName");
+      this.user.lastName = localStorage.getItem("library-userLastName");
       if (this.userId && this.loggedIn) {
         this.fetchBooks();
       }

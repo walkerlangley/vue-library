@@ -1,5 +1,6 @@
 <template>
   <div class='main book-list'>
+    <md-card>
     <app-book
       v-for="(book, i) in books"
       :book="book"
@@ -12,6 +13,7 @@
       <div class='book-description'>{{ book.description }}</div>
       <div class='book-description'>{{ book.read }}</div>
     </app-book>
+    </md-card>
   </div>
 </template>
 
