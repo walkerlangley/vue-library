@@ -36,6 +36,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     props: ['logUserIn'],
     data() {
@@ -53,8 +55,10 @@
           password: this.credentials.password,
         }
 
-        this.$http.post('login', data)
+        console.log('About to Post');
+        axios.post('http://localhost:3000/login', data)
           .then(resp => {
+            console.log('RESP: ', resp);
             if (resp.status === 200) {
               return resp.json();
             }

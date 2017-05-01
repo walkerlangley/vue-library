@@ -1,6 +1,9 @@
 var path = require('path')
 var webpack = require('webpack')
 
+// This is to get rid of some loaderParser error
+process.traceDeprecation = true
+
 module.exports = {
   entry: './src/main.js',
   output: {

@@ -95,7 +95,7 @@
       },
       logUserIn(user) {
         console.log('User: ', user);
-        this.loggedIn = true;
+        this.loggedIn = false;
         this.user.userId = user.id;
         this.user.firstName = user.firstName;
         this.user.lastName = user.lastName;
