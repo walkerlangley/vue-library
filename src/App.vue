@@ -37,7 +37,8 @@
       </div>
       <hr />
       <div>
-        <button @click="fetchBooks">Fetch Books</button>
+        <md-button
+          @click.native="fetchBooks">Fetch Books</md-button>
       </div>
     </div>
   </div>
@@ -80,7 +81,7 @@
       },
       fetchBooks() {
         console.log("Fetching Books");
-        this.$http.get(`books/${this.user.userId}`)
+        fetch(`http://localhost:3000/books/${this.user.userId}`, { method: 'GET' })
           .then(response => {
             return response.json();
           })
@@ -95,7 +96,7 @@
       },
       logUserIn(user) {
         console.log('User: ', user);
-        this.loggedIn = false;
+        this.loggedIn = true;
         this.user.userId = user.id;
         this.user.firstName = user.firstName;
         this.user.lastName = user.lastName;
@@ -105,6 +106,7 @@
         localStorage.setItem("library-userLastName", this.user.lastName);
       },
       logout() {
+        console.log('Logging Out');
         this.loggedIn = false;
         this.userId = null;
       }

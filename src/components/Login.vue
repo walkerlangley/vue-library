@@ -49,22 +49,21 @@
       }
     },
     methods: {
-      login() {
+      login(e) {
+        e.preventDefault();
         let data = {
           username: this.credentials.username,
           password: this.credentials.password,
         }
 
-        console.log('About to Post');
         axios.post('http://localhost:3000/login', data)
           .then(resp => {
-            console.log('RESP: ', resp);
             if (resp.status === 200) {
-              return resp.json();
+              return resp.data;
             }
           })
           .then(user => {
-            console.log('WTF');
+            this.logUserIn(user);
           });
       }
     }
